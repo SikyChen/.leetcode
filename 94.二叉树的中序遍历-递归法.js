@@ -17,28 +17,21 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
-
-// 入栈出栈遍历法
+// 递归法
 var inorderTraversal = function(root) {
-  if (!root) return [];
-
-  let stack = [];
-  let head = root;
   let res = [];
-
-  while(head || stack.length) {
-    if (head) {
-      stack.push(head);
-      head = head.left;
-    }
-    else {
-      head = stack.pop();
-      res.push(head.val);
-      head = head.right;
-    }
-  }
-
+  process(root);
   return res;
+
+  function process(head) {
+    if (!head) return null;
+
+    process(head.left);
+
+    res.push(head.val);
+
+    process(head.right);
+  }
 };
 
 // @lc code=end
